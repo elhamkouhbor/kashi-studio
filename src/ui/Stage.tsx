@@ -33,6 +33,7 @@ export function Stage() {
     const ed = new KashiEditor(host.current);
     setEditor(ed);
     (window as unknown as { kashi: KashiEditor }).kashi = ed; // for tests and power users
+    (window as unknown as { kashiText: () => Promise<unknown> }).kashiText = () => import("../text/outline");
     ed.on((kind) => {
       refreshFromEditor();
       if (kind === "change" && getState().ready) documentChanged();

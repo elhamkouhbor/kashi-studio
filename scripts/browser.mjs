@@ -179,7 +179,7 @@ await page.waitForFunction(() => !!document.querySelector('[data-name^="Text out
 const tp = await K(() => { const p = document.querySelector('[data-name^="Text outlines"]'); return p ? { len: p.getAttribute("d").length, w: p.getBBox().width } : null; });
 ok(!!tp && tp.len > 400 && tp.w > 20, "text becomes outlines", tp ? `${tp.len} chars, ${tp.w.toFixed(1)} mm wide` : "none");
 // shaping check: joined forms make the word narrower than isolated letters
-const widths = await K(async () => { const m = await import("/src/text/outline.ts"); const a = await m.textToPath("کاشی", "Vazirmatn", 400, 20); const iso = await m.textToPath("ک ا ش ی".replace(/ /g, "‌"), "Vazirmatn", 400, 20); return [a.width, iso.width]; });
+const widths = await K(async () => { const m = await window.kashiText(); const a = await m.textToPath("کاشی", "Vazirmatn", 400, 20); const iso = await m.textToPath("ک ا ش ی".replace(/ /g, "‌"), "Vazirmatn", 400, 20); return [a.width, iso.width]; });
 ok(widths[0] < widths[1], "letters join (shaped word is narrower than isolated letters)", widths.map((w) => w.toFixed(2)).join(" < "));
 
 console.log("\nRecolour");
