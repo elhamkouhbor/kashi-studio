@@ -70,7 +70,7 @@ export class KashiEditor {
       gridSnapping: false,
       snappingStep: 5,
       showRulers: false,
-      imgPath: "",
+      imgPath: `${import.meta.env.BASE_URL}cursors`,
       selectNew: true,
     });
     this.canvas.textActions?.setInputElem?.(hidden);
