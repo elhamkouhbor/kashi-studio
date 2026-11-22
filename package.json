@@ -1,0 +1,39 @@
+{
+  "name": "kashi-studio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build && node scripts/postbuild.mjs dist",
+    "build:pages": "tsc && KASHI_BASE=/kashi-studio/ vite build && node scripts/postbuild.mjs dist",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test": "node scripts/test.mjs",
+    "test:browser": "node scripts/browser.mjs"
+  },
+  "dependencies": {
+    "@fontsource/noto-naskh-arabic": "5.2.6",
+    "@fontsource/vazirmatn": "5.2.8",
+    "@svgedit/svgcanvas": "7.4.2",
+    "dompurify": "3.2.6",
+    "harfbuzzjs": "1.6.4",
+    "lucide-react": "0.460.0",
+    "paper": "0.17.0",
+    "pathseg": "1.2.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "2.6.2",
+    "@types/node": "22.10.0",
+    "@types/react": "18.3.12",
+    "@types/react-dom": "18.3.1",
+    "@vitejs/plugin-react": "4.3.4",
+    "esbuild": "0.21.5",
+    "jsdom": "25.0.1",
+    "playwright-core": "1.55.0",
+    "typescript": "5.6.3",
+    "vite": "5.4.11"
+  }
+}

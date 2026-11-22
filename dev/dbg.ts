@@ -1,0 +1,12 @@
+import { JSDOM } from "jsdom";
+import { documentFor } from "../src/editor/document";
+import { exportSvg } from "../src/export/svg";
+import { sanitizeSvg, svgSizeMm } from "../src/io/sanitize";
+const win = new JSDOM("").window as any;
+const { svg } = documentFor("lustre", { size: 160 }, "kashan-lustre");
+const out = exportSvg(svg, { scope: "document", units: "mm", includeConstruction: false, includeReference: false, includeTileEdge: false, expandUses: false }, new win.DOMParser(), new win.XMLSerializer());
+console.log(out.slice(0, 300));
+const clean = sanitizeSvg(out, win).svg;
+console.log("CLEAN", clean.slice(0, 300));
+const root = new win.DOMParser().parseFromString(clean, "image/svg+xml").documentElement;
+console.log(root.tagName, svgSizeMm(root));

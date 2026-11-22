@@ -1,0 +1,7 @@
+node_modules
+dist
+.DS_Store
+*.log
+# original reference downloads (re-downloadable from the URLs in research/catalogue.json);
+# the app uses the WebP versions in public/references
+data/references/images
