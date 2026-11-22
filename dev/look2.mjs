@@ -1,0 +1,15 @@
+import { chromium } from "/var/home/payam/kashi-studio/node_modules/playwright-core/index.mjs";
+const out = process.argv[2];
+const b = await chromium.launch();
+const p = await b.newPage({ viewport: { width: 1440, height: 900 }, colorScheme: "dark" });
+await p.goto("http://localhost:5200/"); await p.waitForSelector('[data-ready="1"]');
+await p.click('.insp-tabs button:has-text("Tools")'); await p.waitForTimeout(1500);
+await p.screenshot({ path: out + "/dark-tools.png" });
+await p.click('.lib-tabs button:has-text("Designs")');
+await p.click('.cat-chips button:has-text("Qajar")'); await p.waitForTimeout(400);
+await p.locator(".dcard-open").first().click(); await p.waitForTimeout(800);
+await p.click('.insp-tabs button:has-text("Object")'); await p.waitForTimeout(300);
+await p.screenshot({ path: out + "/dark-qajar.png" });
+await p.goto("http://localhost:5200/about"); await p.waitForTimeout(800);
+await p.screenshot({ path: out + "/about.png", fullPage: false });
+await b.close();

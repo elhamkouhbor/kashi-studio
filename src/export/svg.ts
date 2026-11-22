@@ -83,7 +83,7 @@ export function exportSvg(svgText: string, o: ExportOptions, parser: DOMParser =
   for (const el of root.querySelectorAll("[data-name]")) {
     const name = el.getAttribute("data-name")!;
     el.setAttributeNS(INKSCAPE, "inkscape:label", name);
-    if (el.tagName === "g") { const id = unique(slug(name)); if (!el.id || /^svg_\d+$|^k[\w]+$/.test(el.id)) { renameId(doc, el, id); } }
+    if (el.tagName === "g") { const id = unique(slug(name)); if (!el.id || /^(svg_\d+|[gk][a-z0-9]{3,})$/.test(el.id)) { renameId(doc, el, id); } }
   }
   // remove editor data
   for (const el of [root, ...root.querySelectorAll("*")]) {
